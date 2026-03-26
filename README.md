@@ -1,4 +1,4 @@
-# GlobalTrackedMaps 
+# PuddlesPlus
 
 # Official Discord 
 
@@ -6,15 +6,15 @@ https://discord.gg/aT9z7q7hX8
 
 ## Building instructions
 
-mvn clean package install
+mvn clean package
  
 ## Description
 
-Inspired by Minecraft Bedrock Edition. This plugin reveals players on maps if they are in the same world. If you wear a mob head your location will be concealed.
+This plugin creates puddles when it rains.
 
-- Commissioned by Yomamaeatstoes, created by LOOHP. 
+- Commissioned by Yomamaeatstoes, created by Abhiram. 
 
 ### Folia inquisitors
 
 [<img src="https://github.com/Folia-Inquisitors.png" width=80 alt="Folia-Inquisitors">](https://github.com/orgs/Folia-Inquisitors/repositories)
-[<img src="https://github.com/LOOHP.png" width=80 alt="HSGamer">](https://github.com/LOOHP)
+[<img src="https://github.com/abhithedev200.png" width=80 alt="HSGamer">](https://github.com/abhithedev200)
