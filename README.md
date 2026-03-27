@@ -4,15 +4,15 @@
 
 https://discord.gg/aT9z7q7hX8
 
-## Building instructions
-
-mvn clean package install
- 
 ## Description
 
 Inspired by Minecraft Bedrock Edition. This plugin reveals players on maps if they are in the same world. If you wear a mob head your location will be concealed.
 
 - Commissioned by Yomamaeatstoes, created by LOOHP. 
+
+## Building instructions
+
+mvn clean package install
 
 ### Folia inquisitors
 
