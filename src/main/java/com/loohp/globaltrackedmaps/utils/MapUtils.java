@@ -1,3 +1,53 @@
+package com.loohp.globaltrackedmaps.utils;
+
+import com.google.common.collect.Collections2;
+import com.loohp.globaltrackedmaps.GlobalTrackedMaps;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.MapMeta;
+import org.bukkit.map.*;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+
+public class MapUtils {
+    private static Class<?> craftMapRendererClass;
+
+    private static Class<?> craftMapViewClass;
+
+    private static Field craftMapViewWorldMapField;
+
+    private static Class<?> nmsWorldMapClass;
+
+    private static Field nmsWorldMapHumansField;
+
+    private static Class<?> nmsEntityHumanClass;
+
+    private static Method nmsEntityHumanGetBukkitEntityMethod;
+
+    private static boolean warnedMissingTrackingField;
+
+    static {
+        try {
+            craftMapRendererClass = NMSUtils.getNMSClass("org.bukkit.craftbukkit.%s.map.CraftMapRenderer");
+            craftMapViewClass = NMSUtils.getNMSClass("org.bukkit.craftbukkit.%s.map.CraftMapView");
+            craftMapViewWorldMapField = craftMapViewClass.getDeclaredField("worldMap");
+            nmsWorldMapClass = NMSUtils.getNMSClass("net.minecraft.server.%s.WorldMap", "net.minecraft.world.level.saveddata.maps.WorldMap", "net.minecraft.world.level.saveddata.maps.MapItemSavedData");
+            nmsWorldMapHumansField = NMSUtils.reflectiveLookup(Field.class,
+                    () -> nmsWorldMapClass.getDeclaredField("carriedByPlayers"),
+                    () -> nmsWorldMapClass.getDeclaredField("humans"),
+                    () -> nmsWorldMapClass.getDeclaredField("o")
+            );
+            nmsEntityHumanClass = NMSUtils.getNMSClass("net.minecraft.server.%s.EntityHuman", "net.minecraft.world.entity.player.EntityHuman", "net.minecraft.world.entity.player.Player");
+            nmsEntityHumanGetBukkitEntityMethod = nmsEntityHumanClass.getMethod("getBukkitEntity");
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
         }
